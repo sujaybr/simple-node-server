@@ -51,7 +51,50 @@ app.get("/ph/:project/:tag/:extra?", (req, res) => {
 });
 
 app.get("/logs", (req, res) => {
-  res.json(logs);
+  let html = `
+    <html>
+      <head>
+        <title>Event Logs</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; }
+          table { border-collapse: collapse; width: 100%; }
+          th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+          th { background-color: #f4f4f4; }
+        </style>
+      </head>
+      <body>
+        <h1>Event Logs</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Project</th>
+              <th>Tag</th>
+              <th>Extra</th>
+            </tr>
+          </thead>
+          <tbody>
+  `;
+
+  logs.forEach(log => {
+    html += `
+      <tr>
+        <td>${log.timestamp}</td>
+        <td>${log.project}</td>
+        <td>${log.tag}</td>
+        <td>${log.extra ?? ""}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+  res.send(html);
 });
 
 app.listen(PORT, () => {
