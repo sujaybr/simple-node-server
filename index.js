@@ -90,10 +90,10 @@ app.get("/logs", (req, res) => {
 
     html += `
       <tr>
-        <td>${formatted}</td>
         <td>${log.project}</td>
         <td>${log.tag}</td>
         <td>${log.extra ?? ""}</td>
+        <td>${formatted}</td>
       </tr>
     `;
   });
