@@ -73,10 +73,10 @@ app.get("/logs", (req, res) => {
         <table>
           <thead>
             <tr>
-              <th>Timestamp (IST)</th>
               <th>Project</th>
               <th>Tag</th>
               <th>Extra</th>
+              <th>Timestamp (IST)</th>
             </tr>
           </thead>
           <tbody>
